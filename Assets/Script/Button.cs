@@ -1,16 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Button : MonoBehaviour
 {
+    
+    private int levelToLoad;
+     public static bool isloadscene;
+
+
+    private void OnMouseDown()
+    {   
+        PlayerPrefs.SetInt("lvl", 0);
+        gamemod.gamepause = false;
+        isloadscene = true;
+        
+    }
+
 
     
-    private void OnMouseDown()
-    {
-        PlayerPrefs.SetInt("lvl", 0);
-        SceneManager.LoadScene("Game");
-        gamemod.gamepause = false;
-    }
 }
