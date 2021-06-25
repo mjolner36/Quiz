@@ -13,7 +13,7 @@ public class Click : MonoBehaviour
 
     private void Start()
     {   if (PlayerPrefs.GetInt("lvl")==0)
-        bounce();
+        bounce(this.gameObject);
     }
     private void OnMouseDown()
     {
@@ -26,7 +26,7 @@ public class Click : MonoBehaviour
                 Instantiate(effect, transform.position, Quaternion.identity);
                 PlayerPrefs.SetInt("lvl", GameObject.Find("Main Camera").GetComponent<LevelManager>().level + 1);
                 if (PlayerPrefs.GetInt("lvl") < 3) StartCoroutine(LoadLevel());
-
+                bounce(childUI);
 
             }
             else Wrongclick();
@@ -44,18 +44,18 @@ public class Click : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
-    public void bounce()
+    public void bounce(GameObject tmp)
     {
         
-        transform.DOScale(new Vector3 (0.2f,0.2f,0f), 0.5f);
-        StartCoroutine(RepeatShow());
+        tmp.transform.DOScale(new Vector3 (0.2f,0.2f,0f), 0.5f);
+        StartCoroutine(RepeatShow(tmp));
     }
 
-    IEnumerator RepeatShow()
+    IEnumerator RepeatShow(GameObject tmp)
     {
         
         yield return new WaitForSeconds(0.2f);
-        transform.DOScale(new Vector3(1f, 1f, 0f), 0.5f);
+        tmp.transform.DOScale(new Vector3(1f, 1f, 0f), 0.5f);
 
     }
 }
