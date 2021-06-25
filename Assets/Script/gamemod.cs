@@ -11,8 +11,14 @@ public class gamemod : MonoBehaviour
         if (PlayerPrefs.GetInt("lvl") > 2)
         {
             gamepause = true;
-            repeat.SetActive(true);
+            StartCoroutine(RepeatShow());
         }
+    }
+
+    IEnumerator RepeatShow()
+    {
+        yield return new WaitForSeconds(1);                
+        repeat.SetActive(true);
     }
 }
     
